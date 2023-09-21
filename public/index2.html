@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style2.css">
+    <title>Documentation</title>
+</head>
+
+<body>
+    <h1>API Documentation</h1>
+    <h2>Toys API</h2>
+    <table>
+        <tr>
+            <th>HTTP Method</th>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Parameters / Request Body</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/product</td>
+            <td>Returns a list of toys according to the query parameters.</td>
+            <td>
+                <ul>
+                    <li>
+                        limit (optional): number of toys per page (default: 5, maximum:
+                        10).
+                    </li>
+                    <li>page (optional): page number to return (default: 1).</li>
+                    <li>sort (optional): field to sort by (default: price).</li>
+                    <li>
+                        reverse (optional): if set to yes, sorts in descending order.
+                    </li>
+                    <li>s (optional): search in the name and info</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/product/category/:cat</td>
+            <td>Returns a list of toys by category.</td>
+            <td>cat: the name of the category to retrieve toys for.</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/product/prices</td>
+            <td>Returns a list of toys filtered by price range</td>
+            <td>
+                <ul>
+                    <li>min (optional): minimum price to filter by (default: 0).</li>
+                    <li>
+                        max (optional): maximum price to filter by (default: maximum
+                        infinty).
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/product/single/:id</td>
+            <td>Returns a single toy by its ID.</td>
+            <td>id: the ID of the toy to retrieve.</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/product</td>
+            <td>Adds a new toy. Token is required!</td>
+            <td>
+                <ul>
+                    <li>Request Body: Toy data to be added in the following format.</li>
+                    <li>price: 1-99999</li>
+                    <li>img_url is allowed and not required</li>
+                    <li>
+                        { name: String, info: String, category: String, price: Number,
+                        img_url: String }
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/product/:id</td>
+            <td>Updates an existing toy. Token is required!</td>
+            <td>
+                <ul>
+                    <li>id: the ID of the toy to update.</li>
+                    <li>
+                        Request Body: Toy data to be updated in the following format.
+                    </li>
+                    <li>price: 1-99999</li>
+                    <li>img_url is allowed and not required</li>
+                    <li>
+                        { name: String, info: String, category: String, price: Number,
+                        img_url: String }
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/product/:id</td>
+            <td>Deletes a toy by its ID. Token is required!</td>
+            <td>id: the ID of the toy to delete.</td>
+        </tr>
+    </table>
+    <h2>Users API</h2>
+    <table>
+        <tr>
+            <th>HTTP Method</th>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Parameters / Request Body</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/user</td>
+            <td>Test endpoint to check if the server is running</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/user/userInfo</td>
+            <td>
+                Get the information for the authenticated user (requires
+                authentication)
+            </td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/user</td>
+            <td>Create a new user</td>
+            <td>{email: String, password: String }</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/user/login</td>
+            <td>Authenticate a user and receive a JWT token in response</td>
+            <td>{ email: String, password: String }</td>
+        </tr>
+    </table>
+    <h2>Users/Admin Token Abillities</h2>
+    <table>
+        <tr>
+            <th>Admin</th>
+            <th>Default User</th>
+        </tr>
+        <tr>
+            <td>Has the ability to add new toys to the system</td>
+            <td>Has the ability to add new toys to the system</td>
+        </tr>
+        <!-- <tr>
+        <td>Can edit all information related to any toy in the system</td>
+        <td>Can only edit information related to toys they have created or are associated with their account</td>
+      </tr> -->
+        <!-- <tr>
+        <td>Has the ability to delete all toys from the system</td>
+        <td>Can only delete toys that they have created or are associated with their account</td>
+      </tr> -->
+    </table>
+</body>
+
+</html>

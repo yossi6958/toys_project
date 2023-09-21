@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  
+  <main id="main_id" class="apiDiv container-fluid mb-4">
+    <article class="container">
+      <div class="text-center mt-4 mb-4">
+        <h2 class="display-3">Games API Documentation</h2>
+        <h3 class="display-6">All Optional Routers:</h3>
+      </div>
+      <table class="table table-hover">
+        <tbody>
+          <tr class="text-center" style="font-size: 20px;">
+            <th>HTTP Method</th>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Parameters / Request Body</th>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/games</td>
+            <td class="getClass2">Returns a list of games according to the query parameters you use.</td>
+            <td class="getClass2 right">
+              <ol>
+                <li>
+                  <strong>page</strong> (optional): page number to display (default: 1). Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games?page=1">https://noa-project3-nodejs.cyclic.app/games?page=1</a>
+                </li>
+                <li>
+                  <strong>perPage</strong> (optional): number of games per page (default: 10). Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games?perPage=8">https://noa-project3-nodejs.cyclic.app/games?perPage=8</a>
+                </li>
+                <li>
+                  <strong>sort</strong> (optional): field to sort by (default: price). Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games?sort=price">https://noa-project3-nodejs.cyclic.app/games?sort=price</a>
+                </li>
+                <li>
+                  <strong>reverse</strong> (optional): if set to yes, sorts in descending order. Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games?sort=price&amp;reverse=yes">https://noa-project3-nodejs.cyclic.app/games?sort=price&amp;reverse=yes</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/games/search</td>
+            <td class="getClass2">Returns a list of games matching to the search query.</td>
+            <td class="getClass2 right">
+              <ol>
+                <li>
+                  <strong>s</strong> : the search query to match against games names or information. Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games/search?s=board">https://noa-project3-nodejs.cyclic.app/games/search?s=board</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/games/category/:catname</td>
+            <td class="getClass2">Returns a list of games by category</td>
+            <td class="getClass2 right">
+              <ol>
+                <li>
+                  <strong>catname</strong>: the name of the category to display games for. Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games/category/Children&#39;s">https://noa-project3-nodejs.cyclic.app/games/category/Children's</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/games/prices</td>
+            <td class="getClass2">Returns a list of games filtered by price range. Example-</td>
+            <td class="getClass2 right">
+              <ol>
+                <li>
+                  <strong>min</strong> (optional): minimum price to filter by (default: 0).
+                </li>
+                <li>
+                  <strong>max</strong> (optional): maximum price to filter by (default: maximum infinty). Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games/prices?min=20&amp;&amp;max=25">https://noa-project3-nodejs.cyclic.app/games/prices?min=20&amp;&amp;max=25</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/games/single/:id</td>
+            <td class="getClass2">Returns a single game by its ID. </td>
+            <td class="getClass2 right">
+              <ol>
+                <li>
+                  <strong>id</strong>: the ID of the game to display. Example-
+                  <br>
+                  <a target="_blank"
+                    href="https://noa-project3-nodejs.cyclic.app/games/single/6409f3d330b3331281d002d9">https://noa-project3-nodejs.cyclic.app/games/single/6409f3d330b3331281d002d9</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="postClass">POST</td>
+            <td class="postClass2">/games</td>
+            <td class="postClass2">Adds a new game.
+              <br>
+              <strong>Token is required!</strong>
+            </td>
+            <td class="postClass2 right">
+              <ol>
+                <li>
+
+
+                  <strong>Request Body</strong>: Game data to be added in the following format-
+                  <br>
+                  {
+                  <br>
+                  "name": "string",
+                  <br>
+                  "info": "string",
+                  <br>
+                  "category": "string",
+                  <br>
+                  "price": number,
+                  <br>
+                  "img_url": "string"
+                  <br>
+                  }
+                  <br>
+                  img_url is allowed and not required
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="putClass">PUT</td>
+            <td class="putClass2">/games/:editId</td>
+            <td class="putClass2">Updates an existing game.
+              <br>
+              <strong>Token is required!</strong>
+            </td>
+            <td class="putClass2 right">
+              <ol>
+                <li>
+                  <strong>editId</strong>: the ID of the game to update.
+                </li>
+                <li>
+                  <strong>Request Body</strong>: Game data to be updated in the following format-
+
+                  <br>
+                  {
+                  <br>
+                  "name": "string",
+                  <br>
+                  "info": "string",
+                  <br>
+                  "category": "string",
+                  <br>
+                  "price": number,
+                  <br>
+                  "img_url": "string"
+                  <br>
+                  }
+                  <br>
+                  img_url is allowed and not required
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="delClass">DELETE</td>
+            <td class="delClass2">/games/:delId</td>
+            <td class="delClass2">Deletes a toy by its ID.
+              <br>
+              <strong>is required!</strong>
+            </td>
+            <td class="delClass2 right">
+              <ol>
+                <li>
+                  <strong>delId</strong>: the ID of the toy to delete.
+                  <br>
+
+                </li>
+              </ol>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="container">
+      <div class="text-center mt-4 mb-4">
+        <h2 class="display-3">Users API</h2>
+        <h3 class="display-6">All Optional Routers:</h3>
+      </div>
+      <table class="table table-hover">
+        <tbody>
+          <tr class="text-center" style="font-size: 20px;">
+            <th>HTTP Method</th>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Request Body</th>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/users</td>
+            <td class="getClass2">Test endpoint to check if the server is running</td>
+            <td class="getClass2">
+              <strong>N/A</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="getClass">GET</td>
+            <td class="getClass2">/users/userInfo</td>
+            <td class="getClass2">Get the information for the authenticated user (requires authentication)</td>
+            <td class="getClass2">
+              <strong>N/A</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="postClass">POST</td>
+            <td class="postClass2">/users</td>
+            <td class="postClass2">Create a new user</td>
+            <td class="postClass2 right">
+              <ol>
+                <li>
+                  <strong>Request Body</strong>: User data to be post in the following format-
+                  <br>
+                  {
+                  <br>
+                  "name": "string",
+                  <br>
+                  "email": "String",
+                  <br>
+                  "password": "string",
+                  <br>
+                  "role": "string"
+                  <br>
+                  }
+                  <br>
+                  role is allowed and not required (default: user).
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td class="postClass">POST</td>
+            <td class="postClass2">/users/login</td>
+            <td class="postClass2">Authenticate a user and receive a JWT token in response</td>
+            <td class="postClass2 right">
+              <ol>
+                <li>
+                  <strong>Request Body</strong>: User data to be loged in in the following format-
+                  <br>
+                  {
+                  <br>
+                  "email": "String",
+                  <br>
+                  "password": "string"
+                  <br>
+                  }
+                </li>
+              </ol>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center mt-4 mb-4">
+        <h2 class="display-3">Users/Admin Token Abillities
+        </h2>
+        <h3 class="display-6">All Abillities:</h3>
+      </div>
+      <table class="table table-hover table-striped">
+        <tbody>
+          <tr class="text-center" style="font-size: 20px;">
+            <th>Admin</th>
+            <th>Default User</th>
+          </tr>
+          <tr>
+            <td>Has the ability to add new games to the system</td>
+            <td>Has the ability to add new games to the system</td>
+          </tr>
+          <tr>
+            <td>Can edit all information related to any game in the system</td>
+            <td>Can only edit information related to games they have created or are associated with their account(by his
+              user_id)</td>
+          </tr>
+          <tr>
+            <td>Has the ability to delete all games from the system</td>
+            <td>Can only delete games that they have created or are associated with their account(by his user_id)</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </main>
+ 
+
+
+</body>
+
+</html>
