@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     // save the password as * so the hacker couldnt know which crypt we using.
     await user.save();
     user.password = "*********";
-    res.json(user);
+    res.status(201).json(user);
   } catch (err) {
     // check if the email is already in the database.
     if (err.code == 11000) {
@@ -60,14 +60,15 @@ router.post("/", async (req, res) => {
 
 // check if the user already exists (signed up).
 router.post("/login", async (req, res) => {
+  const validBody = validateLogin(req.body);
+  if (validBody.error) {
+    return res.status(400).json(validBody.error.details);
+  }
+
   try {
-    const validBody = validateLogin(req.body);
-    if (validBody.error) {
-      return res.status(400).json(validBody.error.details);
-    }
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json({ err: "Email not match" });
+      return res.status(401).json({ err: "Email not found" });
     }
     const password = await bcrypt.compare(req.body.password , user.password);
     if (!password) {
@@ -81,20 +82,5 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//my Info
-
-router.get("/myInfo", auth, async (req, res) => {
-  try {
-    const data = await UserModel.findOne(
-      { _id: req.tokenData._id },
-      { password: 0 }
-    );
-    console.log(req.tokenData);
-    res.json(data);
-  } catch (err) {
-    console.log(err);
-    res.status(502).json({ err });
-  }
-});
 
 module.exports = router;

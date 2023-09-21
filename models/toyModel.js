@@ -14,7 +14,7 @@ const ToySchema = new mongoose.Schema(
 );
 exports.ToyModel = mongoose.model("toys", ToySchema);
 
-exports.validateToys = (reqBody) => {
+exports.validateToy = (reqBody) => {
   const JoiSchema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     info: Joi.string().min(2).max(100).required(),

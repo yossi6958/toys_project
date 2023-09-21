@@ -28,7 +28,7 @@ exports.validateUser = (reqBody) => {
   const JoiSchema = Joi.object({
     name: Joi.string().min(2).max(99).required(),
     email: Joi.string().min(2).max(99).email().required(),
-    password: Joi.string().min(2).max(999).required(),
+    password: Joi.string().min(3).max(16).required(),
   });
   return JoiSchema.validate(reqBody);
 };
@@ -36,7 +36,7 @@ exports.validateUser = (reqBody) => {
 exports.validateLogin = (reqBody) => {
   const JoiSchema = Joi.object({
     email: Joi.string().min(2).max(99).email().required(),
-    password: Joi.string().min(2).max(999).required(),
+    password: Joi.string().min(3).max(16).required(),
   });
   return JoiSchema.validate(reqBody);
 };
